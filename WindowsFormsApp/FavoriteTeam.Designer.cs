@@ -28,19 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label1 = new Label();
+            cbFavoriteTeam = new ComboBox();
+            btnNext = new Button();
             SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(192, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Pick your favorite team:";
+            // 
+            // cbFavoriteTeam
+            // 
+            cbFavoriteTeam.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFavoriteTeam.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cbFavoriteTeam.FormattingEnabled = true;
+            cbFavoriteTeam.ItemHeight = 21;
+            cbFavoriteTeam.Location = new Point(12, 47);
+            cbFavoriteTeam.Name = "cbFavoriteTeam";
+            cbFavoriteTeam.Size = new Size(360, 29);
+            cbFavoriteTeam.Sorted = true;
+            cbFavoriteTeam.TabIndex = 1;
+            // 
+            // btnNext
+            // 
+            btnNext.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnNext.Location = new Point(147, 117);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(93, 32);
+            btnNext.TabIndex = 2;
+            btnNext.Text = "NEXT";
+            btnNext.UseVisualStyleBackColor = true;
+            btnNext.Click += btnNext_Click;
             // 
             // FavoriteTeam
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(384, 161);
+            Controls.Add(btnNext);
+            Controls.Add(cbFavoriteTeam);
+            Controls.Add(label1);
             Name = "FavoriteTeam";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "wcv";
+            Load += FavoriteTeam_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
+        private ComboBox cbFavoriteTeam;
+        private Button btnNext;
     }
 }
