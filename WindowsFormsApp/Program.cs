@@ -18,11 +18,16 @@ namespace WindowsFormsApp
 
             switch (Repository.LoadSettings())
             {
-                case "load_settings":
+                case "input_settings":
                     Application.Run(new Form1());
                     break;
-                default:
+                case "input_favorite_team":
                     Application.Run(new FavoriteTeam());
+                    break;
+                case "no_input_needed":
+                    Application.Run(new MainForm());
+                    break;
+                default:
                     break;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using ClassLibrary.Model;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Net.Http.Json;
 
 namespace ClassLibrary
 {
@@ -38,6 +39,9 @@ namespace ClassLibrary
             if (!File.Exists(SETTINGS_PATH))
                 File.AppendAllText(SETTINGS_PATH, "");
 
+            if (!File.Exists(TEAM_PATH))
+                File.AppendAllText(TEAM_PATH, "");
+
             List<string> settings = new List<string>();
 
             if (string.IsNullOrEmpty(GENDER) || string.IsNullOrEmpty(LANGUAGE))
@@ -55,12 +59,33 @@ namespace ClassLibrary
                 }
             }
 
-            if (GENDER == null || LANGUAGE == null)
+            if (String.IsNullOrEmpty(PICKED_FIFA_CODE))
             {
-                return "load_settings";
+                List<string> info = new List<string>();
+                using (StreamReader reader = new StreamReader(TEAM_PATH))
+                {
+                    while (!reader.EndOfStream)
+                        info.Add(reader.ReadLine());
+                }
+
+                if (info.Count != 0)
+                {
+                    string[] details = info[0].Split('(');
+                    string code = details[1].Substring(0, 3);
+                    PICKED_FIFA_CODE = code;
+                }
             }
 
-            return "load_favorite_team";
+            if (GENDER == null || LANGUAGE == null)
+            {
+                return "input_settings";
+            }
+            else if (string.IsNullOrEmpty(PICKED_FIFA_CODE))
+            {
+                return "input_favorite_team";
+            }
+
+            return "no_input_needed";
         }
 
         public static async Task<List<Team>> GetTeams()
@@ -74,7 +99,7 @@ namespace ClassLibrary
                 path = FEMALE_CHAMPIONSHIP_URL;
 
             RestResponse<Team> restResponse = await GetTeamData(path);
-            List<Team> teams = DeserialiseData(restResponse);
+            List<Team>? teams = DeserialiseData(restResponse);
             return teams;
         }
 
@@ -84,13 +109,9 @@ namespace ClassLibrary
             return restClient.ExecuteAsync<Team>(new RestRequest());
         }
 
-        private static List<T> DeserialiseData<T>(RestResponse<T> restResponse)
+        private static List<T>? DeserialiseData<T>(RestResponse<T> restResponse)
         {
-            return
-                JsonConvert.DeserializeObject(restResponse.Content, typeof(List<T>), new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                }) as List<T>;
+            return JsonConvert.DeserializeObject<List<T>>(restResponse.Content);
         }
 
         public static void SaveFavoriteTeam(Team favoriteTeam)

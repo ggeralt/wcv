@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.Model;
+using System.Collections.Specialized;
 
 namespace WindowsFormsApp
 {
@@ -20,16 +21,17 @@ namespace WindowsFormsApp
         private async void LoadData()
         {
             teams = await Repository.GetTeams();
-            foreach (Team team in teams) { cbFavoriteTeam.Items.Add(team); }
+            foreach (Team team in teams)
+                cbFavoriteTeam.Items.Add(team);
             cbFavoriteTeam.SelectedIndex = 0;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            Team selectedTeam = cbFavoriteTeam.SelectedItem as Team;
+            Team? selectedTeam = cbFavoriteTeam.SelectedItem as Team;
             Repository.SaveFavoriteTeam(selectedTeam);
-            //this.Hide();
-            //new MainForm().Show();
+            this.Hide();
+            new MainForm().Show();
         }
     }
 }
