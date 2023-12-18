@@ -31,7 +31,6 @@
             label1 = new Label();
             cbFavoriteTeam = new ComboBox();
             btnNext = new Button();
-            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -51,7 +50,7 @@
             cbFavoriteTeam.FormattingEnabled = true;
             cbFavoriteTeam.IntegralHeight = false;
             cbFavoriteTeam.ItemHeight = 21;
-            cbFavoriteTeam.Location = new Point(12, 47);
+            cbFavoriteTeam.Location = new Point(12, 50);
             cbFavoriteTeam.Name = "cbFavoriteTeam";
             cbFavoriteTeam.Size = new Size(360, 29);
             cbFavoriteTeam.Sorted = true;
@@ -68,21 +67,11 @@
             btnNext.UseVisualStyleBackColor = true;
             btnNext.Click += btnNext_Click;
             // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 82);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 3;
-            // 
             // FavoriteTeam
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 161);
-            Controls.Add(comboBox1);
             Controls.Add(btnNext);
             Controls.Add(cbFavoriteTeam);
             Controls.Add(label1);
@@ -99,6 +88,5 @@
         private Label label1;
         private ComboBox cbFavoriteTeam;
         private Button btnNext;
-        private ComboBox comboBox1;
     }
 }

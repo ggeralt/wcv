@@ -1,7 +1,6 @@
 ﻿using ClassLibrary.Model;
 using Newtonsoft.Json;
 using RestSharp;
-using System.Net.Http.Json;
 
 namespace ClassLibrary
 {
@@ -17,17 +16,19 @@ namespace ClassLibrary
         private static string? PICKED_CHAMPIONSHIP;
         private static string? PICKED_FIFA_CODE;
 
-
         private static string MALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/men/teams/results";
         private static string FEMALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/women/teams/results";
 
+        private static string MALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
+        private static string FEMALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
+
         public static void SaveSettings(Settings settings)
         {
-            using (StreamWriter writter = new StreamWriter(SETTINGS_PATH))
+            using (StreamWriter writer = new StreamWriter(SETTINGS_PATH))
             {
-                writter.Write(settings.Gender);
-                writter.Write(Environment.NewLine);
-                writter.Write(settings.Language);
+                writer.Write(settings.Gender);
+                writer.Write(Environment.NewLine);
+                writer.Write(settings.Language);
             }
 
             GENDER = settings.Gender.ToString();
@@ -101,6 +102,55 @@ namespace ClassLibrary
             RestResponse<Team> restResponse = await GetTeamData(path);
             List<Team>? teams = DeserialiseData(restResponse);
             return teams;
+        }
+
+        public static async Task<List<ClassLibrary.Model.Match>> GetMatch()
+        {
+            string pickedPath;
+
+            if (PICKED_CHAMPIONSHIP == "Male")
+                pickedPath = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
+            else
+                pickedPath = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
+
+            RestResponse<ClassLibrary.Model.Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
+            List<ClassLibrary.Model.Match> matches = DeserialiseData(restResponse);
+
+            return matches;
+        }
+
+        private static Task<RestResponse<ClassLibrary.Model.Match>> GetMatchData(string match)
+        {
+            RestClient restClient = new RestClient(match);
+            return restClient.ExecuteAsync<ClassLibrary.Model.Match>(new RestRequest());
+        }
+
+        public static void SaveFavoritePlayers(List<string> favorites)
+        {
+            using (StreamWriter writter = new StreamWriter(PLAYERS_PATH))
+            {
+                foreach (string favorite in favorites)
+                {
+                    writter.Write(favorite);
+                    writter.Write(Environment.NewLine);
+                }
+            }
+        }
+
+        public static List<string> LoadFavoritePlayers()
+        {
+            List<string> favoritePlayers = new List<string>();
+
+            if (!File.Exists(PLAYERS_PATH))
+                File.AppendAllText(PLAYERS_PATH, "");
+
+            using (StreamReader reader = new StreamReader(PLAYERS_PATH))
+            {
+                while (!reader.EndOfStream)
+                    favoritePlayers.Add(reader.ReadLine());
+            }
+
+            return favoritePlayers;
         }
 
         private static Task<RestResponse<Team>> GetTeamData(string path)

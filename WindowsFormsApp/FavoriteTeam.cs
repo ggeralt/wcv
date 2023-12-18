@@ -28,7 +28,7 @@ namespace WindowsFormsApp
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            Team? selectedTeam = cbFavoriteTeam.SelectedItem as Team;
+            Team selectedTeam = (Team)cbFavoriteTeam.SelectedItem;
             Repository.SaveFavoriteTeam(selectedTeam);
             this.Hide();
             new MainForm().Show();
