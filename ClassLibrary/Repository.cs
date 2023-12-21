@@ -104,7 +104,7 @@ namespace ClassLibrary
             return teams;
         }
 
-        public static async Task<List<ClassLibrary.Model.Match>> GetMatch()
+        public static async Task<List<Match>> GetMatch()
         {
             string pickedPath;
 
@@ -113,16 +113,16 @@ namespace ClassLibrary
             else
                 pickedPath = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
 
-            RestResponse<ClassLibrary.Model.Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
-            List<ClassLibrary.Model.Match> matches = DeserialiseData(restResponse);
+            RestResponse<Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
+            List<Match> matches = DeserialiseData(restResponse);
 
             return matches;
         }
 
-        private static Task<RestResponse<ClassLibrary.Model.Match>> GetMatchData(string match)
+        private static Task<RestResponse<Match>> GetMatchData(string match)
         {
             RestClient restClient = new RestClient(match);
-            return restClient.ExecuteAsync<ClassLibrary.Model.Match>(new RestRequest());
+            return restClient.ExecuteAsync<Match>(new RestRequest());
         }
 
         public static void SaveFavoritePlayers(List<string> favorites)

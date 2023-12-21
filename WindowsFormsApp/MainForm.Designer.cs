@@ -51,6 +51,8 @@
             // 
             // flpAllPlayers
             // 
+            flpAllPlayers.AllowDrop = true;
+            flpAllPlayers.AutoScroll = true;
             flpAllPlayers.Location = new Point(12, 99);
             flpAllPlayers.Name = "flpAllPlayers";
             flpAllPlayers.Size = new Size(450, 550);
@@ -60,6 +62,7 @@
             // 
             // flpFavoritePlayers
             // 
+            flpFavoritePlayers.AllowDrop = true;
             flpFavoritePlayers.Location = new Point(550, 99);
             flpFavoritePlayers.Name = "flpFavoritePlayers";
             flpFavoritePlayers.Size = new Size(450, 550);
@@ -121,7 +124,7 @@
             label3.Name = "label3";
             label3.Size = new Size(76, 18);
             label3.TabIndex = 9;
-            label3.Text = "All Players";
+            label3.Text = "Get Most";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MainForm

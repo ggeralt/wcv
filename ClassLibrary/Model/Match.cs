@@ -1,13 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibrary.Model
 {
-    public enum Position { Defender, Forward, Goalkeeper, Midfield };
+    public enum Position { Defender, Forward, Goalie, Midfield };
 
     public class Match
     {

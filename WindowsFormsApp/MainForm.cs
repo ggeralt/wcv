@@ -7,8 +7,8 @@ namespace WindowsFormsApp
     public partial class MainForm : Form
     {
         private List<Player> players;
-        private List<ClassLibrary.Model.Match> matches;
-        public List<string> favoritePlayers = new();
+        private List<Match> matches;
+        public List<string> favoritePlayers = new List<string>();
 
         public MainForm()
         {
@@ -48,7 +48,7 @@ namespace WindowsFormsApp
                     flpAllPlayers.Controls.Add(new PlayerControl(player, player.Favorite));
             }
 
-            foreach (ClassLibrary.Model.Match match in matches)
+            foreach (Match match in matches)
             {
                 foreach (TeamEvent teamEvent in match.HomeTeamEvents)
                     AddGoalsCards(teamEvent, players);
