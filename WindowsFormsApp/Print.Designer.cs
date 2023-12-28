@@ -33,23 +33,23 @@
             btnPrint = new Button();
             printDocument = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog = new PrintPreviewDialog();
-            flowLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel
             // 
-            flowLayoutPanel.Controls.Add(btnPrint);
-            flowLayoutPanel.Location = new Point(1, 1);
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.Location = new Point(12, 12);
             flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(200, 100);
+            flowLayoutPanel.Size = new Size(387, 479);
             flowLayoutPanel.TabIndex = 0;
             // 
             // btnPrint
             // 
-            btnPrint.Location = new Point(3, 3);
+            btnPrint.Location = new Point(12, 497);
             btnPrint.Name = "btnPrint";
             btnPrint.Size = new Size(75, 23);
             btnPrint.TabIndex = 0;
+            btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
             btnPrint.Click += btnPrint_Click;
             // 
@@ -72,11 +72,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 261);
+            ClientSize = new Size(411, 532);
+            Controls.Add(btnPrint);
             Controls.Add(flowLayoutPanel);
             Name = "Print";
             Text = "Print";
-            flowLayoutPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 

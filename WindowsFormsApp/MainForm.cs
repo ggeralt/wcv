@@ -25,11 +25,9 @@ namespace WindowsFormsApp
             matches = await Repository.GetMatch();
             players = new List<Player>();
 
-            foreach (Player player in matches[0].HomeTeamStatistics.StartingEleven)
-                players.Add(player);
+            foreach (Player player in matches[0].HomeTeamStatistics.StartingEleven) players.Add(player);
 
-            foreach (Player player in matches[0].HomeTeamStatistics.Substitutes)
-                players.Add(player);
+            foreach (Player player in matches[0].HomeTeamStatistics.Substitutes) players.Add(player);
 
             foreach (Player player in players)
             {
@@ -44,17 +42,13 @@ namespace WindowsFormsApp
                     }
                 }
 
-                if (!used)
-                    flpAllPlayers.Controls.Add(new PlayerControl(player, player.Favorite));
+                if (!used) flpAllPlayers.Controls.Add(new PlayerControl(player, player.Favorite));
             }
 
             foreach (Match match in matches)
             {
-                foreach (TeamEvent teamEvent in match.HomeTeamEvents)
-                    AddGoalsCards(teamEvent, players);
-
-                foreach (TeamEvent teamEvent in match.AwayTeamEvents)
-                    AddGoalsCards(teamEvent, players);
+                foreach (TeamEvent teamEvent in match.HomeTeamEvents) AddGoalsCards(teamEvent, players);
+                foreach (TeamEvent teamEvent in match.AwayTeamEvents) AddGoalsCards(teamEvent, players);
             }
         }
 
@@ -64,10 +58,8 @@ namespace WindowsFormsApp
             {
                 if (player.Name.Equals(teamEvent.Player))
                 {
-                    if (teamEvent.TypeOfEvent.Equals("goal") || teamEvent.TypeOfEvent.Equals("goal-penalty"))
-                        player.Goals += 1;
-                    else if (teamEvent.TypeOfEvent.Equals("yellow-card"))
-                        player.Cards += 1;
+                    if (teamEvent.TypeOfEvent.Equals("goal") || teamEvent.TypeOfEvent.Equals("goal-penalty")) player.Goals += 1;
+                    else if (teamEvent.TypeOfEvent.Equals("yellow-card")) player.Cards += 1;
                 }
             }
         }
@@ -81,27 +73,21 @@ namespace WindowsFormsApp
 
         private void btnOrderByGoals_Click(object sender, EventArgs e)
         {
-            if (players != null)
-                new Print(players, "Goals").ShowDialog();
-            else
-                MessageBox.Show("Players are empty!");
+            if (players != null) new Print(players, "Goals").ShowDialog();
+            else MessageBox.Show("Players are empty!");
         }
 
         private void btnOrderByCards_Click(object sender, EventArgs e)
         {
-            if (players != null)
-                new Print(players, "Cards").ShowDialog();
-            else
-                MessageBox.Show("Players are empty!");
+            if (players != null) new Print(players, "Cards").ShowDialog();
+            else MessageBox.Show("Players are empty!");
         }
 
         private void btnOrderByVisitors_Click(object sender, EventArgs e)
         {
-            if (players == null)
-                MessageBox.Show("Players are empty");
+            if (players == null) MessageBox.Show("Players are empty");
 
-            if (matches == null)
-                MessageBox.Show("Matches are empty");
+            if (matches == null) MessageBox.Show("Matches are empty");
 
             new Print(matches).ShowDialog();
         }
@@ -115,8 +101,7 @@ namespace WindowsFormsApp
                 Repository.SaveFavoritePlayers(favoritePlayers);
                 Dispose();
             }
-            else
-                return;
+            else return;
         }
 
         private void flpAllPlayers_DragDrop(object sender, DragEventArgs e)

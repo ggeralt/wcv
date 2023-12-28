@@ -19,21 +19,16 @@ namespace WindowsFormsApp
 
             flowLayoutPanel.Width = 200;
 
-            foreach (Match match in matches)
-                flowLayoutPanel.Controls.Add(new MatchRankControl(match));
+            foreach (Match match in matches) flowLayoutPanel.Controls.Add(new MatchRankControl(match));
         }
 
         public Print(List<Player> players, string gameType)
         {
             InitializeComponent();
 
-            if (gameType == "Cards")
-                players = players.OrderByDescending(p => p.Cards).ToList();
-            else if (gameType == "Goals")
-                players = players.OrderByDescending(p => p.Goals).ToList();
-
-            foreach (Player player in players)
-                flowLayoutPanel.Controls.Add(new RankControl(player));
+            if (gameType == "Cards") players = players.OrderByDescending(p => p.Cards).ToList();
+            else if (gameType == "Goals") players = players.OrderByDescending(p => p.Goals).ToList();
+            foreach (Player player in players) flowLayoutPanel.Controls.Add(new RankControl(player));
         }
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
