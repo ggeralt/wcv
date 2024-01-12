@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,24 @@ namespace WPFApp
     /// </summary>
     public partial class PlayerData : Window
     {
-        public PlayerData()
+        Player player = new Player();
+
+        public PlayerData(Player player)
         {
+            this.player = player;
             InitializeComponent();
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            lbPlayerName.Content = player.Name;
+            lbShirtNumber.Content = player.ShirtNumber;
+            lbShirtNumber.Content = player.ShirtNumber;
+            lbYellowCards.Content = player.Cards;
+            lbPosition.Content = player.Position;
+            lbGoals.Content = player.Goals;
+            lbCaptain.Content = player.Captain ? "Yes" : "Not captain";
         }
     }
 }

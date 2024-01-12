@@ -37,6 +37,9 @@ namespace ClassLibrary.Model
         [JsonProperty("points")]
         public long Points { get; set; }
 
+        [JsonProperty("goals")]
+        public long Goals { get; set; }
+
         [JsonProperty("goals_for")]
         public long GoalsFor { get; set; }
 

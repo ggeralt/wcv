@@ -8,12 +8,12 @@ namespace ClassLibrary.Model
         public long? Id { get; set; }
 
         [JsonProperty("type_of_event")]
-        public String TypeOfEvent { get; set; }
+        public string TypeOfEvent { get; set; }
 
         [JsonProperty("player")]
-        public String Player { get; set; }
+        public string Player { get; set; }
 
         [JsonProperty("time")]
-        public String Time { get; set; }
+        public string Time { get; set; }
     }
 }

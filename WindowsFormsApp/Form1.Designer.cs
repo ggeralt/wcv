@@ -1,4 +1,7 @@
-﻿namespace WindowsFormsApp
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp
 {
     partial class Form1
     {
@@ -28,7 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            label1 = new System.Windows.Forms.Label();
             btnNext = new Button();
             btnAbout = new Button();
             cbGender = new ComboBox();

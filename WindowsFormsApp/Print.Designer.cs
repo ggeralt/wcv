@@ -1,4 +1,7 @@
-﻿namespace WindowsFormsApp
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp
 {
     partial class Print
     {

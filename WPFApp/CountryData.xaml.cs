@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,26 @@ namespace WPFApp
     /// </summary>
     public partial class CountryData : Window
     {
-        public CountryData()
+        public Result result { get; set; }
+
+        public CountryData(Result result)
         {
             InitializeComponent();
+            this.result = result;
+            LoadInfo();
+        }
+
+        private void LoadInfo()
+        {
+            lbCountry.Content = result.Country;
+            lbCountryCode.Content = result.FifaCode;
+            lbGames.Content = result.GamesPlayed;
+            lbWins.Content = result.Wins;
+            lbDraws.Content = result.Draws;
+            lbLosses.Content = result.Losses;
+            lblGoalsScored.Content = result.GoalsScored;
+            lbGoalsTaken.Content = result.GoalsTaken;
+            lbGoalDifferential.Content = result.GoalDifferential;
         }
     }
 }

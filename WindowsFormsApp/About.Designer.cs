@@ -1,4 +1,8 @@
-﻿namespace WindowsFormsApp
+﻿using System.Drawing;
+using System.Reflection.Emit;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp
 {
     partial class About
     {
@@ -29,52 +33,55 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
-            label1 = new Label();
-            pictureBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(21, 331);
-            label1.Name = "label1";
-            label1.Size = new Size(166, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Made by: Jan Šantek";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(10, 283);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(166, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Made by: Jan Šantek";
             // 
             // pictureBox
             // 
-            pictureBox.Cursor = Cursors.Hand;
-            pictureBox.ErrorImage = null;
-            pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
-            pictureBox.InitialImage = null;
-            pictureBox.Location = new Point(6, 3);
-            pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(200, 200);
-            pictureBox.TabIndex = 1;
-            pictureBox.TabStop = false;
-            pictureBox.Click += pictureBox_Click;
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox.ErrorImage = null;
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.InitialImage = null;
+            this.pictureBox.Location = new System.Drawing.Point(5, 12);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(171, 173);
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
             // 
             // About
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(212, 361);
-            Controls.Add(pictureBox);
-            Controls.Add(label1);
-            Name = "About";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "About";
-            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(182, 313);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.label1);
+            this.Name = "About";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "About";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private Label label1;
+        private System.Windows.Forms.Label label1;
         private PictureBox pictureBox;
     }
 }

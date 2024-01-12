@@ -1,6 +1,8 @@
 ﻿using ClassLibrary;
 using ClassLibrary.Model;
-using System.Collections.Specialized;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp
 {

@@ -1,4 +1,7 @@
-﻿namespace WindowsFormsApp.UserControls
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp.UserControls
 {
     partial class RankControl
     {

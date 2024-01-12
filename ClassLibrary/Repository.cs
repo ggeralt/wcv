@@ -1,6 +1,10 @@
 ﻿using ClassLibrary.Model;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using System;
 
 namespace ClassLibrary
 {
@@ -11,16 +15,26 @@ namespace ClassLibrary
         private static string TEAM_PATH = PATH + "team.txt";
         private static string PLAYERS_PATH = PATH + "players.txt";
 
-        private static string? GENDER;
-        private static string? LANGUAGE;
-        private static string? PICKED_CHAMPIONSHIP;
-        private static string? PICKED_FIFA_CODE;
+        private static string GENDER;
+        private static string LANGUAGE;
+        private static string PICKED_CHAMPIONSHIP;
+        private static string PICKED_FIFA_CODE;
 
         private static string MALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/men/teams/results";
         private static string FEMALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/women/teams/results";
+        private static string FEMALE_MATCH_FILE = PATH + "JsonData/women/matches.json";
 
         private static string MALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
         private static string FEMALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
+
+        private static string WPF_PICKED_GENDER;
+        private static string WPF_PICKED_LANGUAGE;
+        private static string WPF_PICKED_SCREENSIZE;
+
+        private static string WPF_FAVORITE_TEAM;
+
+        private static string WPF_SETTINGS_PATH = PATH + "wpfsettings.txt";
+        private static string WPF_FAVORITETEAM_PATH = PATH + "wpffavoriteteam.txt";
 
         public static void SaveSettings(Settings settings)
         {
@@ -100,11 +114,11 @@ namespace ClassLibrary
                 path = FEMALE_CHAMPIONSHIP_URL;
 
             RestResponse<Team> restResponse = await GetTeamData(path);
-            List<Team>? teams = DeserialiseData(restResponse);
+            List<Team> teams = DeserialiseData(restResponse);
             return teams;
         }
 
-        public static async Task<List<Match>> GetMatch()
+        public static async Task<List<Model.Match>> GetMatch()
         {
             string pickedPath;
 
@@ -113,16 +127,16 @@ namespace ClassLibrary
             else
                 pickedPath = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
 
-            RestResponse<Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
-            List<Match> matches = DeserialiseData(restResponse);
+            RestResponse<Model.Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
+            List<Model.Match> matches = DeserialiseData(restResponse);
 
             return matches;
         }
 
-        private static Task<RestResponse<Match>> GetMatchData(string match)
+        private static Task<RestResponse<Model.Match>> GetMatchData(string match)
         {
             RestClient restClient = new RestClient(match);
-            return restClient.ExecuteAsync<Match>(new RestRequest());
+            return restClient.ExecuteAsync<Model.Match>(new RestRequest());
         }
 
         public static void SaveFavoritePlayers(List<string> favorites)
@@ -159,7 +173,7 @@ namespace ClassLibrary
             return restClient.ExecuteAsync<Team>(new RestRequest());
         }
 
-        private static List<T>? DeserialiseData<T>(RestResponse<T> restResponse)
+        private static List<T> DeserialiseData<T>(RestResponse<T> restResponse)
         {
             return JsonConvert.DeserializeObject<List<T>>(restResponse.Content);
         }
@@ -167,8 +181,114 @@ namespace ClassLibrary
         public static void SaveFavoriteTeam(Team favoriteTeam)
         {
             PICKED_FIFA_CODE = favoriteTeam.FifaCode;
-            using (StreamWriter writter = new StreamWriter(TEAM_PATH)) 
+            using (StreamWriter writter = new StreamWriter(TEAM_PATH))
                 writter.Write(favoriteTeam);
+        }
+
+        public static void SaveWPFFavoriteTeam(WPFSettings wpfSettings)
+        {
+            WPF_FAVORITE_TEAM = wpfSettings.favoriteTeam;
+            using (StreamWriter writter = new StreamWriter(WPF_FAVORITETEAM_PATH))
+                writter.WriteLine(WPF_FAVORITE_TEAM);
+        }
+
+        public static Task<HashSet<Match>> LoadMatches(string fifa_code)
+        {
+            if (WPF_PICKED_GENDER == "Male")
+            {
+                return Task.Run(() =>
+                {
+                    var apiClient = new RestClient(MALE_MATCH_DETAILS_URL + fifa_code);
+                    var response = apiClient.Execute<HashSet<Match>>(new RestRequest());
+                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content);
+                });
+            }
+            else
+            {
+                return Task.Run(() =>
+                {
+                    var apiClient = new RestClient(FEMALE_MATCH_DETAILS_URL + fifa_code);
+                    var response = apiClient.Execute<HashSet<Match>>(new RestRequest());
+                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content);
+
+                    /*using (StreamReader reader = new StreamReader(FEMALE_MATCH_FILE))
+                    {
+                        string json = reader.ReadToEnd();
+                        return JsonConvert.DeserializeObject<HashSet<Match>>(json);
+                    }*/
+                });
+            }
+        }
+
+        public static Task<HashSet<Result>> LoadMatchResults()
+        {
+            LoadWPFSettings();
+
+            if (WPF_PICKED_GENDER == "Male")
+            {
+                return Task.Run(() =>
+                {
+                    var apiClient = new RestClient(MALE_CHAMPIONSHIP_URL);
+                    var response = apiClient.Execute<HashSet<Result>>(new RestRequest());
+                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content);
+                });
+            }
+            else
+            {
+                return Task.Run(() =>
+                {
+                    var apiClient = new RestClient(FEMALE_CHAMPIONSHIP_URL);
+                    var response = apiClient.Execute<HashSet<Result>>(new RestRequest());
+                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content);
+                });
+            }
+        }
+
+        public static void SaveWPFSettings(WPFSettings wpfSettings)
+        {
+            WPF_PICKED_GENDER = wpfSettings.selectedGender;
+            WPF_PICKED_LANGUAGE = wpfSettings.selectedLanguage;
+            WPF_PICKED_SCREENSIZE = wpfSettings.selectedScreenSize;
+
+            using (StreamWriter writter = new StreamWriter(WPF_SETTINGS_PATH))
+            {
+                writter.WriteLine(WPF_PICKED_GENDER);
+                writter.WriteLine(WPF_PICKED_LANGUAGE);
+                writter.WriteLine(WPF_PICKED_SCREENSIZE);
+            }
+        }
+
+        public static void LoadWPFSettings()
+        {
+            List<string> wpfsettings = new List<string>();
+            using (StreamReader reader = new StreamReader(WPF_SETTINGS_PATH))
+            {
+                while (!reader.EndOfStream)
+                    wpfsettings.Add(reader.ReadLine());
+
+                if (wpfsettings.Count > 0)
+                {
+                    WPF_PICKED_GENDER = wpfsettings[0];
+                    WPF_PICKED_LANGUAGE = wpfsettings[1];
+                    WPF_PICKED_SCREENSIZE = wpfsettings[2];
+                }
+            }
+        }
+
+        public static string GetWPFResolution()
+        {
+            using (StreamReader reader = new StreamReader(WPF_SETTINGS_PATH))
+            {
+                List<string> wpfsettings = new List<string>();
+
+                while (!reader.EndOfStream)
+                    wpfsettings.Add(reader.ReadLine());
+
+                if (wpfsettings.Count > 0)
+                    WPF_PICKED_SCREENSIZE = wpfsettings[2];
+            }
+
+            return WPF_PICKED_SCREENSIZE;
         }
     }
 }

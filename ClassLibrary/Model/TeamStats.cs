@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ClassLibrary.Model
 {
@@ -56,7 +57,7 @@ namespace ClassLibrary.Model
         public long? FoulsCommitted { get; set; }
 
         [JsonProperty("tactics")]
-        public String Tactics { get; set; }
+        public string Tactics { get; set; }
 
         [JsonProperty("starting_eleven")]
         public List<Player> StartingEleven { get; set; }
