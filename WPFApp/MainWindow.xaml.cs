@@ -62,15 +62,15 @@ namespace WPFApp
             {
                 case "Small":
                     Width = 800;
-                    Height = 850;
+                    Height = 550;
                     break;
                 case "Medium":
-                    Width = 1100;
-                    Height = 900;
+                    Width = 1200;
+                    Height = 950;
                     break;
                 case "Large":
-                    Width = 1200;
-                    Height = 1000;
+                    Width = 1600;
+                    Height = 1350;
                     break;
                 default:
                     break;
@@ -215,6 +215,9 @@ namespace WPFApp
 
         private void btnHomeTeam_Click(object sender, RoutedEventArgs e)
         {
+            if (cbHomeTeam.SelectedIndex == -1)
+                return;
+
             foreach (var result in results)
                 if (result.Country == pickedCountry.Trim())
                     country = result;
@@ -224,6 +227,9 @@ namespace WPFApp
 
         private void btnAwayTeam_Click(object sender, RoutedEventArgs e)
         {
+            if (cbAwayTeam.SelectedIndex == -1)
+                return;
+
             country = new Result();
 
             foreach (var result in results)

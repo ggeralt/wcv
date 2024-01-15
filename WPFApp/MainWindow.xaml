@@ -9,36 +9,35 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="29*"/>
-            <RowDefinition Height="370*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="350*"/>
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lbResult" Content="00:00" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="49,0,0,0"/>
+        <Label x:Name="lbResult" Content="00:00" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"/>
 
-        <ComboBox x:Name="cbHomeTeam" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" SelectionChanged="cbHomeTeam_SelectionChanged" Margin="0,0,0,32" Grid.RowSpan="2"/>
-        <Label Content="VS" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="63,0,0,32" Grid.RowSpan="2"/>
-        <ComboBox x:Name="cbAwayTeam" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" SelectionChanged="cbAwayTeam_SelectionChanged" Margin="0,0,0,32" Grid.RowSpan="2"/>
+        <ComboBox x:Name="cbHomeTeam" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" SelectionChanged="cbHomeTeam_SelectionChanged"/>
+        <Label Content="VS" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+        <ComboBox x:Name="cbAwayTeam" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" SelectionChanged="cbAwayTeam_SelectionChanged"/>
 
-        <Button x:Name="btnHomeTeam" Content="Team info" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnHomeTeam_Click"/>
-        <Button x:Name="btnSettings" Content="Settings" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnSettings_Click"/>
-        <Button x:Name="btnAwayTeam" Content="Team info" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnAwayTeam_Click"/>
+        <Button x:Name="btnHomeTeam" Content="Team info" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnHomeTeam_Click"/>
+        <Button x:Name="btnSettings" Content="Settings" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnSettings_Click"/>
+        <Button x:Name="btnAwayTeam" Content="Team info" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="20" Click="btnAwayTeam_Click"/>
 
-        <Image Source="football_field.jpg" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="11" Margin="0,32,0,0" Grid.RowSpan="2"/>
+        <Image Source="football_field.jpg" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="10"/>
 
         <StackPanel x:Name="homeGoal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <StackPanel x:Name="homeDefender" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>

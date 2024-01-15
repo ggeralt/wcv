@@ -23,5 +23,15 @@ namespace WPFApp
         {
             new PlayerData(player).Show();
         }
+
+        private void lbPlayerNumber_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new PlayerData(player).Show();
+        }
+
+        private void lbPlayerName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new PlayerData(player).Show();
+        }
     }
 }

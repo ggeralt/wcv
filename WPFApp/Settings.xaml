@@ -23,6 +23,6 @@
             <ComboBoxItem Tag="medium" Content="Medium"/>
             <ComboBoxItem Tag="large" Content="Large"/>
         </ComboBox>
-        <Button x:Name="btnContinue" Content="Continue" HorizontalAlignment="Center" Padding="15,5" Margin="10"/>
+        <Button x:Name="btnContinue" Content="Continue" HorizontalAlignment="Center" Padding="15,5" Margin="10" Click="btnContinue_Click"/>
     </StackPanel>
 </Window>

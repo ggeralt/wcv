@@ -37,7 +37,7 @@ namespace WPFApp
             lbYellowCards.Content = player.Cards;
             lbPosition.Content = player.Position;
             lbGoals.Content = player.Goals;
-            lbCaptain.Content = player.Captain ? "Yes" : "Not captain";
+            lbCaptain.Content = player.Captain ? "Yes" : "No";
         }
     }
 }

@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lbPlayerNumber" Width="55" Content="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Background="Red" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lbPlayerName" Content="Luka M." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" Grid.Column="0" Grid.Row="1"/>
+        <Label x:Name="lbPlayerNumber" Width="55" Content="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Background="Red" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonDown="lbPlayerNumber_MouseLeftButtonDown"/>
+        <Label x:Name="lbPlayerName" Content="Luka M." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" Grid.Column="0" Grid.Row="1" MouseLeftButtonDown="lbPlayerName_MouseLeftButtonDown"/>
     </Grid>
 </UserControl>

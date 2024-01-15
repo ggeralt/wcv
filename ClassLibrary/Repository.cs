@@ -118,7 +118,7 @@ namespace ClassLibrary
             return teams;
         }
 
-        public static async Task<List<Model.Match>> GetMatch()
+        public static async Task<List<Match>> GetMatch()
         {
             string pickedPath;
 
@@ -133,7 +133,7 @@ namespace ClassLibrary
             return matches;
         }
 
-        private static Task<RestResponse<Model.Match>> GetMatchData(string match)
+        private static Task<RestResponse<Match>> GetMatchData(string match)
         {
             RestClient restClient = new RestClient(match);
             return restClient.ExecuteAsync<Model.Match>(new RestRequest());
@@ -261,6 +261,10 @@ namespace ClassLibrary
         public static void LoadWPFSettings()
         {
             List<string> wpfsettings = new List<string>();
+
+            if (!File.Exists(WPF_SETTINGS_PATH))
+                File.AppendAllText(WPF_SETTINGS_PATH, "");
+
             using (StreamReader reader = new StreamReader(WPF_SETTINGS_PATH))
             {
                 while (!reader.EndOfStream)
