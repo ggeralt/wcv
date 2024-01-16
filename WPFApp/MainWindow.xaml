@@ -39,16 +39,15 @@
 
         <Image Source="football_field.jpg" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="10"/>
 
-        <StackPanel x:Name="homeGoal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="homeDefender" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="homeMid" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="homeForward" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="homeGoal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="homeDefender" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="homeMid" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="homeForward" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-
-        <StackPanel x:Name="oppositeGoal" Grid.Row="3" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="oppositeDefender" Grid.Row="3" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="oppositeMid" Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel x:Name="oppositeForward" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="oppositeGoal" Grid.Row="3" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="oppositeDefender" Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="oppositeMid" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel x:Name="oppositeForward" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

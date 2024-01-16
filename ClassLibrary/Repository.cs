@@ -31,10 +31,28 @@ namespace ClassLibrary
         private static string WPF_PICKED_LANGUAGE;
         private static string WPF_PICKED_SCREENSIZE;
 
-        private static string WPF_FAVORITE_TEAM;
+        //private static string WPF_FAVORITE_TEAM;
 
         private static string WPF_SETTINGS_PATH = PATH + "wpfsettings.txt";
-        private static string WPF_FAVORITETEAM_PATH = PATH + "wpffavoriteteam.txt";
+        //private static string WPF_FAVORITETEAM_PATH = PATH + "wpffavoriteteam.txt";
+
+        public static string GetPickedFifaCode()
+        {
+            List<string> info = new List<string>();
+
+            using (StreamReader reader = new StreamReader(TEAM_PATH))
+                while (!reader.EndOfStream)
+                    info.Add(reader.ReadLine());
+
+            if (info.Count != 0)
+            {
+                string[] details = info[0].Split('(');
+                string code = details[1].Substring(0, 3);
+                return code;
+            }
+
+            return "";
+        }
 
         public static void SaveSettings(Settings settings)
         {
@@ -77,11 +95,10 @@ namespace ClassLibrary
             if (String.IsNullOrEmpty(PICKED_FIFA_CODE))
             {
                 List<string> info = new List<string>();
+
                 using (StreamReader reader = new StreamReader(TEAM_PATH))
-                {
                     while (!reader.EndOfStream)
                         info.Add(reader.ReadLine());
-                }
 
                 if (info.Count != 0)
                 {
@@ -92,13 +109,9 @@ namespace ClassLibrary
             }
 
             if (GENDER == null || LANGUAGE == null)
-            {
                 return "input_settings";
-            }
             else if (string.IsNullOrEmpty(PICKED_FIFA_CODE))
-            {
                 return "input_favorite_team";
-            }
 
             return "no_input_needed";
         }
@@ -127,8 +140,8 @@ namespace ClassLibrary
             else
                 pickedPath = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
 
-            RestResponse<Model.Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
-            List<Model.Match> matches = DeserialiseData(restResponse);
+            RestResponse<Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
+            List<Match> matches = DeserialiseData(restResponse);
 
             return matches;
         }
@@ -136,7 +149,7 @@ namespace ClassLibrary
         private static Task<RestResponse<Match>> GetMatchData(string match)
         {
             RestClient restClient = new RestClient(match);
-            return restClient.ExecuteAsync<Model.Match>(new RestRequest());
+            return restClient.ExecuteAsync<Match>(new RestRequest());
         }
 
         public static void SaveFavoritePlayers(List<string> favorites)
@@ -185,12 +198,12 @@ namespace ClassLibrary
                 writter.Write(favoriteTeam);
         }
 
-        public static void SaveWPFFavoriteTeam(WPFSettings wpfSettings)
+        /*public static void SaveWPFFavoriteTeam(WPFSettings wpfSettings)
         {
             WPF_FAVORITE_TEAM = wpfSettings.favoriteTeam;
             using (StreamWriter writter = new StreamWriter(WPF_FAVORITETEAM_PATH))
                 writter.WriteLine(WPF_FAVORITE_TEAM);
-        }
+        }*/
 
         public static Task<HashSet<Match>> LoadMatches(string fifa_code)
         {

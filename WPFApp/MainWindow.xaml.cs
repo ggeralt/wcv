@@ -30,7 +30,15 @@ namespace WPFApp
         {
             results = await Repository.LoadMatchResults();
 
-            foreach (var result in results) cbHomeTeam.Items.Add(result);
+            foreach (var result in results)
+            {
+                cbHomeTeam.Items.Add(result);
+
+                if (result.FifaCode == Repository.GetPickedFifaCode())
+                {
+                    cbHomeTeam.SelectedItem = result;
+                }
+            }
         }
 
         private async void LoadOpositeTeam()
@@ -60,15 +68,15 @@ namespace WPFApp
 
             switch (resolution)
             {
-                case "Small":
+                case "800x550":
                     Width = 800;
                     Height = 550;
                     break;
-                case "Medium":
+                case "1200x950":
                     Width = 1200;
                     Height = 950;
                     break;
-                case "Large":
+                case "1600x1350":
                     Width = 1600;
                     Height = 1350;
                     break;
@@ -198,7 +206,7 @@ namespace WPFApp
             string newTeam = details[1].Substring(0, 3);
             pickedCountry = details[0];
             fifa_code = newTeam;
-            Repository.SaveWPFFavoriteTeam(new WPFSettings(newTeam));
+            //Repository.SaveWPFFavoriteTeam(new WPFSettings(newTeam));
             LoadOpositeTeam();
         }
 

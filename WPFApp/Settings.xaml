@@ -19,9 +19,9 @@
         </ComboBox>
         <Label>Screen size:</Label>
         <ComboBox x:Name="cbScreenSize" SelectedIndex="0">
-            <ComboBoxItem Tag="small" Content="Small"/>
-            <ComboBoxItem Tag="medium" Content="Medium"/>
-            <ComboBoxItem Tag="large" Content="Large"/>
+            <ComboBoxItem Tag="small" Content="800x550"/>
+            <ComboBoxItem Tag="medium" Content="1200x950"/>
+            <ComboBoxItem Tag="large" Content="1600x1350"/>
         </ComboBox>
         <Button x:Name="btnContinue" Content="Continue" HorizontalAlignment="Center" Padding="15,5" Margin="10" Click="btnContinue_Click"/>
     </StackPanel>
