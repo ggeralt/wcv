@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
 using ClassLibrary;
 using ClassLibrary.Model;
 
@@ -23,9 +25,15 @@ namespace WPFApp
         {
             FillTeamData();
             InitializeComponent();
+            PreviewKeyDown += new System.Windows.Input.KeyEventHandler(HandleEsc);
             LoadResolution();
         }
 
+        private void HandleEsc(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
+        }
         private async void FillTeamData()
         {
             results = await Repository.LoadMatchResults();
@@ -255,7 +263,16 @@ namespace WPFApp
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            DialogResult dialogResult = System.Windows.Forms.MessageBox.Show($"Shutdown the application?", "Confirmation", MessageBoxButtons.YesNo);
+
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Windows.Application.Current.Shutdown();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
