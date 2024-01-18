@@ -104,7 +104,7 @@ namespace WindowsFormsApp
                 Repository.SaveFavoritePlayers(favoritePlayers);
                 Dispose();
             }
-            else return;
+            else e.Cancel = true;
         }
 
         private void flpAllPlayers_DragDrop(object sender, DragEventArgs e)

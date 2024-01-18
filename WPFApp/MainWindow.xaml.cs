@@ -34,6 +34,7 @@ namespace WPFApp
             if (e.Key == Key.Escape)
                 Close();
         }
+
         private async void FillTeamData()
         {
             results = await Repository.LoadMatchResults();

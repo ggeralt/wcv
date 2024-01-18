@@ -22,7 +22,7 @@ namespace ClassLibrary
 
         private static string MALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/men/teams/results";
         private static string FEMALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/women/teams/results";
-        private static string FEMALE_MATCH_FILE = PATH + "JsonData/women/matches.json";
+        //private static string FEMALE_MATCH_FILE = PATH + "JsonData/women/matches.json";
 
         private static string MALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
         private static string FEMALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
@@ -30,11 +30,16 @@ namespace ClassLibrary
         private static string WPF_PICKED_GENDER;
         private static string WPF_PICKED_LANGUAGE;
         private static string WPF_PICKED_SCREENSIZE;
+        private static string WPF_SETTINGS_PATH = PATH + "wpfsettings.txt";
 
         //private static string WPF_FAVORITE_TEAM;
-
-        private static string WPF_SETTINGS_PATH = PATH + "wpfsettings.txt";
         //private static string WPF_FAVORITETEAM_PATH = PATH + "wpffavoriteteam.txt";
+
+        private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            MissingMemberHandling = MissingMemberHandling.Ignore
+        };
 
         public static string GetPickedFifaCode()
         {
@@ -188,7 +193,7 @@ namespace ClassLibrary
 
         private static List<T> DeserialiseData<T>(RestResponse<T> restResponse)
         {
-            return JsonConvert.DeserializeObject<List<T>>(restResponse.Content);
+            return JsonConvert.DeserializeObject<List<T>>(restResponse.Content, jsonSerializerSettings);
         }
 
         public static void SaveFavoriteTeam(Team favoriteTeam)
@@ -213,7 +218,7 @@ namespace ClassLibrary
                 {
                     var apiClient = new RestClient(MALE_MATCH_DETAILS_URL + fifa_code);
                     var response = apiClient.Execute<HashSet<Match>>(new RestRequest());
-                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content);
+                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content, jsonSerializerSettings);
                 });
             }
             else
@@ -222,7 +227,7 @@ namespace ClassLibrary
                 {
                     var apiClient = new RestClient(FEMALE_MATCH_DETAILS_URL + fifa_code);
                     var response = apiClient.Execute<HashSet<Match>>(new RestRequest());
-                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content);
+                    return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content, jsonSerializerSettings);
 
                     /*using (StreamReader reader = new StreamReader(FEMALE_MATCH_FILE))
                     {
@@ -243,7 +248,7 @@ namespace ClassLibrary
                 {
                     var apiClient = new RestClient(MALE_CHAMPIONSHIP_URL);
                     var response = apiClient.Execute<HashSet<Result>>(new RestRequest());
-                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content);
+                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content, jsonSerializerSettings);
                 });
             }
             else
@@ -252,7 +257,7 @@ namespace ClassLibrary
                 {
                     var apiClient = new RestClient(FEMALE_CHAMPIONSHIP_URL);
                     var response = apiClient.Execute<HashSet<Result>>(new RestRequest());
-                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content);
+                    return JsonConvert.DeserializeObject<HashSet<Result>>(response.Content, jsonSerializerSettings);
                 });
             }
         }
