@@ -32,55 +32,57 @@ namespace WindowsFormsApp
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print));
-            flowLayoutPanel = new FlowLayoutPanel();
-            btnPrint = new Button();
-            printDocument = new System.Drawing.Printing.PrintDocument();
-            printPreviewDialog = new PrintPreviewDialog();
-            SuspendLayout();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.SuspendLayout();
             // 
             // flowLayoutPanel
             // 
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.Location = new Point(12, 12);
-            flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(387, 479);
-            flowLayoutPanel.TabIndex = 0;
+            this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(10, 10);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(332, 415);
+            this.flowLayoutPanel.TabIndex = 0;
             // 
             // btnPrint
             // 
-            btnPrint.Location = new Point(12, 497);
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(75, 23);
-            btnPrint.TabIndex = 0;
-            btnPrint.Text = "Print";
-            btnPrint.UseVisualStyleBackColor = true;
-            btnPrint.Click += btnPrint_Click;
+            this.btnPrint.Location = new System.Drawing.Point(10, 431);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 20);
+            this.btnPrint.TabIndex = 0;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // printDocument
             // 
-            printDocument.PrintPage += printDocument_PrintPage;
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
             // 
             // printPreviewDialog
             // 
-            printPreviewDialog.AutoScrollMargin = new Size(0, 0);
-            printPreviewDialog.AutoScrollMinSize = new Size(0, 0);
-            printPreviewDialog.ClientSize = new Size(400, 300);
-            printPreviewDialog.Document = printDocument;
-            printPreviewDialog.Enabled = true;
-            printPreviewDialog.Icon = (Icon)resources.GetObject("printPreviewDialog.Icon");
-            printPreviewDialog.Name = "printPreviewDialog";
-            printPreviewDialog.Visible = false;
+            this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog.Document = this.printDocument;
+            this.printPreviewDialog.Enabled = true;
+            this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
+            this.printPreviewDialog.Name = "printPreviewDialog";
+            this.printPreviewDialog.Visible = false;
             // 
             // Print
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(411, 532);
-            Controls.Add(btnPrint);
-            Controls.Add(flowLayoutPanel);
-            Name = "Print";
-            Text = "Print";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(352, 461);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.flowLayoutPanel);
+            this.Name = "Print";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Print";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

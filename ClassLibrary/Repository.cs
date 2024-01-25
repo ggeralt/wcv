@@ -17,23 +17,18 @@ namespace ClassLibrary
 
         private static string GENDER;
         private static string LANGUAGE;
-        private static string PICKED_CHAMPIONSHIP;
-        private static string PICKED_FIFA_CODE;
+        private static string FIFA_CODE;
 
         private static string MALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/men/teams/results";
         private static string FEMALE_CHAMPIONSHIP_URL = "https://worldcup-vua.nullbit.hr/women/teams/results";
-        //private static string FEMALE_MATCH_FILE = PATH + "JsonData/women/matches.json";
 
         private static string MALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
         private static string FEMALE_MATCH_DETAILS_URL = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
 
-        private static string WPF_PICKED_GENDER;
-        private static string WPF_PICKED_LANGUAGE;
-        private static string WPF_PICKED_SCREENSIZE;
+        private static string WPF_GENDER;
+        private static string WPF_LANGUAGE;
+        private static string WPF_SCREENSIZE;
         private static string WPF_SETTINGS_PATH = PATH + "wpfsettings.txt";
-
-        //private static string WPF_FAVORITE_TEAM;
-        //private static string WPF_FAVORITETEAM_PATH = PATH + "wpffavoriteteam.txt";
 
         private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings
         {
@@ -43,6 +38,9 @@ namespace ClassLibrary
 
         public static string GetPickedFifaCode()
         {
+            if (!File.Exists(TEAM_PATH))
+                File.AppendAllText(TEAM_PATH, "");
+
             List<string> info = new List<string>();
 
             using (StreamReader reader = new StreamReader(TEAM_PATH))
@@ -97,7 +95,7 @@ namespace ClassLibrary
                 }
             }
 
-            if (String.IsNullOrEmpty(PICKED_FIFA_CODE))
+            if (String.IsNullOrEmpty(FIFA_CODE))
             {
                 List<string> info = new List<string>();
 
@@ -109,13 +107,13 @@ namespace ClassLibrary
                 {
                     string[] details = info[0].Split('(');
                     string code = details[1].Substring(0, 3);
-                    PICKED_FIFA_CODE = code;
+                    FIFA_CODE = code;
                 }
             }
 
             if (GENDER == null || LANGUAGE == null)
                 return "input_settings";
-            else if (string.IsNullOrEmpty(PICKED_FIFA_CODE))
+            else if (string.IsNullOrEmpty(FIFA_CODE))
                 return "input_favorite_team";
 
             return "no_input_needed";
@@ -126,7 +124,7 @@ namespace ClassLibrary
             LoadSettings();
             string path;
 
-            if (PICKED_CHAMPIONSHIP == "Male")
+            if (GENDER == "M")
                 path = MALE_CHAMPIONSHIP_URL;
             else
                 path = FEMALE_CHAMPIONSHIP_URL;
@@ -140,12 +138,12 @@ namespace ClassLibrary
         {
             string pickedPath;
 
-            if (PICKED_CHAMPIONSHIP == "Male")
+            if (GENDER == "M")
                 pickedPath = "https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
             else
                 pickedPath = "https://worldcup-vua.nullbit.hr/women/matches/country?fifa_code=";
 
-            RestResponse<Match> restResponse = await GetMatchData(pickedPath + PICKED_FIFA_CODE);
+            RestResponse<Match> restResponse = await GetMatchData(pickedPath + FIFA_CODE);
             List<Match> matches = DeserialiseData(restResponse);
 
             return matches;
@@ -198,7 +196,7 @@ namespace ClassLibrary
 
         public static void SaveFavoriteTeam(Team favoriteTeam)
         {
-            PICKED_FIFA_CODE = favoriteTeam.FifaCode;
+            FIFA_CODE = favoriteTeam.FifaCode;
             using (StreamWriter writter = new StreamWriter(TEAM_PATH))
                 writter.Write(favoriteTeam);
         }
@@ -212,7 +210,7 @@ namespace ClassLibrary
 
         public static Task<HashSet<Match>> LoadMatches(string fifa_code)
         {
-            if (WPF_PICKED_GENDER == "Male")
+            if (WPF_GENDER == "Male")
             {
                 return Task.Run(() =>
                 {
@@ -242,7 +240,7 @@ namespace ClassLibrary
         {
             LoadWPFSettings();
 
-            if (WPF_PICKED_GENDER == "Male")
+            if (WPF_GENDER == "Male")
             {
                 return Task.Run(() =>
                 {
@@ -264,15 +262,15 @@ namespace ClassLibrary
 
         public static void SaveWPFSettings(WPFSettings wpfSettings)
         {
-            WPF_PICKED_GENDER = wpfSettings.selectedGender;
-            WPF_PICKED_LANGUAGE = wpfSettings.selectedLanguage;
-            WPF_PICKED_SCREENSIZE = wpfSettings.selectedScreenSize;
+            WPF_GENDER = wpfSettings.selectedGender;
+            WPF_LANGUAGE = wpfSettings.selectedLanguage;
+            WPF_SCREENSIZE = wpfSettings.selectedScreenSize;
 
             using (StreamWriter writter = new StreamWriter(WPF_SETTINGS_PATH))
             {
-                writter.WriteLine(WPF_PICKED_GENDER);
-                writter.WriteLine(WPF_PICKED_LANGUAGE);
-                writter.WriteLine(WPF_PICKED_SCREENSIZE);
+                writter.WriteLine(WPF_GENDER);
+                writter.WriteLine(WPF_LANGUAGE);
+                writter.WriteLine(WPF_SCREENSIZE);
             }
         }
 
@@ -290,9 +288,9 @@ namespace ClassLibrary
 
                 if (wpfsettings.Count > 0)
                 {
-                    WPF_PICKED_GENDER = wpfsettings[0];
-                    WPF_PICKED_LANGUAGE = wpfsettings[1];
-                    WPF_PICKED_SCREENSIZE = wpfsettings[2];
+                    WPF_GENDER = wpfsettings[0];
+                    WPF_LANGUAGE = wpfsettings[1];
+                    WPF_SCREENSIZE = wpfsettings[2];
                 }
             }
         }
@@ -307,10 +305,10 @@ namespace ClassLibrary
                     wpfsettings.Add(reader.ReadLine());
 
                 if (wpfsettings.Count > 0)
-                    WPF_PICKED_SCREENSIZE = wpfsettings[2];
+                    WPF_SCREENSIZE = wpfsettings[2];
             }
 
-            return WPF_PICKED_SCREENSIZE;
+            return WPF_SCREENSIZE;
         }
     }
 }

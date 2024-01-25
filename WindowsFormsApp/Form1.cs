@@ -32,15 +32,20 @@ namespace WindowsFormsApp
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings
-            {
-                Gender = (Gender)cbGender.SelectedItem,
-                Language = (Language)cbLanguage.SelectedItem
-            };
+            DialogResult dialogResult = MessageBox.Show($"Set gender to: {cbGender.SelectedItem}\nSet language to {cbLanguage.SelectedItem}", "Confirmation", MessageBoxButtons.YesNo);
 
-            Repository.SaveSettings(settings);
-            this.Hide();
-            new FavoriteTeam().Show();
+            if (dialogResult == DialogResult.Yes)
+            {
+                Settings settings = new Settings
+                {
+                    Gender = (Gender)cbGender.SelectedItem,
+                    Language = (Language)cbLanguage.SelectedItem
+                };
+
+                Repository.SaveSettings(settings);
+                this.Hide();
+                new FavoriteTeam().Show();
+            }
         }
 
         private void btnAbout_Click(object sender, EventArgs e)

@@ -41,10 +41,10 @@ namespace WindowsFormsApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 283);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 21);
+            this.label1.Size = new System.Drawing.Size(195, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Made by: Jan Šantek";
             // 
@@ -59,7 +59,7 @@ namespace WindowsFormsApp
             this.pictureBox.InitialImage = null;
             this.pictureBox.Location = new System.Drawing.Point(5, 12);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(171, 173);
+            this.pictureBox.Size = new System.Drawing.Size(200, 200);
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
@@ -67,7 +67,7 @@ namespace WindowsFormsApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(182, 313);
+            this.ClientSize = new System.Drawing.Size(211, 313);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label1);
             this.Name = "About";
