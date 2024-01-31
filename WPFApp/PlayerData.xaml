@@ -1,4 +1,5 @@
-﻿<Window x:Class="WPFApp.PlayerData"
+﻿<Window x:Name="PlayerDataWindow"
+        x:Class="WPFApp.PlayerData"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +7,23 @@
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
         Title="Player data" Height="400" Width="300" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Storyboard x:Key="SizeAnimation">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                       Storyboard.TargetName="PlayerDataWindow" 
+                                       Storyboard.TargetProperty="Width">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="400"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource SizeAnimation}"/>
+
+            
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
         Title="Country data" Height="400" Width="300" WindowStartupLocation="CenterScreen">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard Duration="00:00:5" Storyboard.TargetProperty="Opacity">
+                        <DoubleAnimation From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

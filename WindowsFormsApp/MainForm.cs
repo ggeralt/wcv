@@ -20,8 +20,9 @@ namespace WindowsFormsApp
             LoadDataAsync();
         }
 
-        private async void LoadDataAsync()
+        private async void LoadDataAsync() 
         {
+            lblLoading.Visible = true;
             flpAllPlayers.Controls.Clear();
             flpFavoritePlayers.Controls.Clear();
 
@@ -53,6 +54,8 @@ namespace WindowsFormsApp
                 foreach (TeamEvent teamEvent in match.HomeTeamEvents) AddGoalsCards(teamEvent, players);
                 foreach (TeamEvent teamEvent in match.AwayTeamEvents) AddGoalsCards(teamEvent, players);
             }
+
+            lblLoading.Visible = false;
         }
 
         private void AddGoalsCards(TeamEvent teamEvent, List<Player> players)
@@ -103,6 +106,7 @@ namespace WindowsFormsApp
             {
                 Repository.SaveFavoritePlayers(favoritePlayers);
                 Dispose();
+                Application.Exit();
             }
             else e.Cancel = true;
         }

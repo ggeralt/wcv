@@ -31,125 +31,142 @@ namespace WindowsFormsApp
         /// </summary>
         private void InitializeComponent()
         {
-            btnSettings = new Button();
-            flpAllPlayers = new FlowLayoutPanel();
-            flpFavoritePlayers = new FlowLayoutPanel();
-            label1 = new Label();
-            label2 = new Label();
-            btnOrderByGoals = new Button();
-            btnOrderByVisitors = new Button();
-            btnOrderByCards = new Button();
-            label3 = new Label();
-            SuspendLayout();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.flpAllPlayers = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpFavoritePlayers = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnOrderByGoals = new System.Windows.Forms.Button();
+            this.btnOrderByVisitors = new System.Windows.Forms.Button();
+            this.btnOrderByCards = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblLoading = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // btnSettings
             // 
-            btnSettings.Location = new Point(12, 12);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(75, 23);
-            btnSettings.TabIndex = 0;
-            btnSettings.Text = "Settings";
-            btnSettings.UseVisualStyleBackColor = true;
-            btnSettings.Click += btnSettings_Click;
+            this.btnSettings.Location = new System.Drawing.Point(10, 10);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(64, 20);
+            this.btnSettings.TabIndex = 0;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // flpAllPlayers
             // 
-            flpAllPlayers.AllowDrop = true;
-            flpAllPlayers.AutoScroll = true;
-            flpAllPlayers.Location = new Point(12, 99);
-            flpAllPlayers.Name = "flpAllPlayers";
-            flpAllPlayers.Size = new Size(450, 550);
-            flpAllPlayers.TabIndex = 1;
-            flpAllPlayers.DragDrop += flpAllPlayers_DragDrop;
-            flpAllPlayers.DragEnter += flpAllPlayers_DragEnter;
+            this.flpAllPlayers.AllowDrop = true;
+            this.flpAllPlayers.AutoScroll = true;
+            this.flpAllPlayers.Location = new System.Drawing.Point(10, 86);
+            this.flpAllPlayers.Name = "flpAllPlayers";
+            this.flpAllPlayers.Size = new System.Drawing.Size(386, 477);
+            this.flpAllPlayers.TabIndex = 1;
+            this.flpAllPlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpAllPlayers_DragDrop);
+            this.flpAllPlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.flpAllPlayers_DragEnter);
             // 
             // flpFavoritePlayers
             // 
-            flpFavoritePlayers.AllowDrop = true;
-            flpFavoritePlayers.Location = new Point(550, 99);
-            flpFavoritePlayers.Name = "flpFavoritePlayers";
-            flpFavoritePlayers.Size = new Size(450, 550);
-            flpFavoritePlayers.TabIndex = 2;
-            flpFavoritePlayers.DragDrop += flpFavoritePlayers_DragDrop;
-            flpFavoritePlayers.DragEnter += flpFavoritePlayers_DragEnter;
+            this.flpFavoritePlayers.AllowDrop = true;
+            this.flpFavoritePlayers.Location = new System.Drawing.Point(471, 86);
+            this.flpFavoritePlayers.Name = "flpFavoritePlayers";
+            this.flpFavoritePlayers.Size = new System.Drawing.Size(386, 477);
+            this.flpFavoritePlayers.TabIndex = 2;
+            this.flpFavoritePlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.flpFavoritePlayers_DragDrop);
+            this.flpFavoritePlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.flpFavoritePlayers_DragEnter);
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 71);
-            label1.Name = "label1";
-            label1.Size = new Size(61, 15);
-            label1.TabIndex = 3;
-            label1.Text = "All Players";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "All Players";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(550, 71);
-            label2.Name = "label2";
-            label2.Size = new Size(89, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Favorite Players";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(471, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Favorite Players";
             // 
             // btnOrderByGoals
             // 
-            btnOrderByGoals.Location = new Point(468, 131);
-            btnOrderByGoals.Name = "btnOrderByGoals";
-            btnOrderByGoals.Size = new Size(76, 23);
-            btnOrderByGoals.TabIndex = 6;
-            btnOrderByGoals.Text = "Goals";
-            btnOrderByGoals.UseVisualStyleBackColor = true;
-            btnOrderByGoals.Click += btnOrderByGoals_Click;
+            this.btnOrderByGoals.Location = new System.Drawing.Point(401, 114);
+            this.btnOrderByGoals.Name = "btnOrderByGoals";
+            this.btnOrderByGoals.Size = new System.Drawing.Size(65, 20);
+            this.btnOrderByGoals.TabIndex = 6;
+            this.btnOrderByGoals.Text = "Goals";
+            this.btnOrderByGoals.UseVisualStyleBackColor = true;
+            this.btnOrderByGoals.Click += new System.EventHandler(this.btnOrderByGoals_Click);
             // 
             // btnOrderByVisitors
             // 
-            btnOrderByVisitors.Location = new Point(468, 189);
-            btnOrderByVisitors.Name = "btnOrderByVisitors";
-            btnOrderByVisitors.Size = new Size(76, 23);
-            btnOrderByVisitors.TabIndex = 7;
-            btnOrderByVisitors.Text = "Visitors";
-            btnOrderByVisitors.UseVisualStyleBackColor = true;
-            btnOrderByVisitors.Click += btnOrderByVisitors_Click;
+            this.btnOrderByVisitors.Location = new System.Drawing.Point(401, 164);
+            this.btnOrderByVisitors.Name = "btnOrderByVisitors";
+            this.btnOrderByVisitors.Size = new System.Drawing.Size(65, 20);
+            this.btnOrderByVisitors.TabIndex = 7;
+            this.btnOrderByVisitors.Text = "Visitors";
+            this.btnOrderByVisitors.UseVisualStyleBackColor = true;
+            this.btnOrderByVisitors.Click += new System.EventHandler(this.btnOrderByVisitors_Click);
             // 
             // btnOrderByCards
             // 
-            btnOrderByCards.Location = new Point(468, 160);
-            btnOrderByCards.Name = "btnOrderByCards";
-            btnOrderByCards.Size = new Size(76, 23);
-            btnOrderByCards.TabIndex = 8;
-            btnOrderByCards.Text = "Cards";
-            btnOrderByCards.UseVisualStyleBackColor = true;
-            btnOrderByCards.Click += btnOrderByCards_Click;
+            this.btnOrderByCards.Location = new System.Drawing.Point(401, 139);
+            this.btnOrderByCards.Name = "btnOrderByCards";
+            this.btnOrderByCards.Size = new System.Drawing.Size(65, 20);
+            this.btnOrderByCards.TabIndex = 8;
+            this.btnOrderByCards.Text = "Cards";
+            this.btnOrderByCards.UseVisualStyleBackColor = true;
+            this.btnOrderByCards.Click += new System.EventHandler(this.btnOrderByCards_Click);
             // 
             // label3
             // 
-            label3.Location = new Point(468, 99);
-            label3.Name = "label3";
-            label3.Size = new Size(76, 18);
-            label3.TabIndex = 9;
-            label3.Text = "Get Most";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            this.label3.Location = new System.Drawing.Point(401, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Get Most";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLoading
+            // 
+            this.lblLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoading.Location = new System.Drawing.Point(379, 281);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(123, 25);
+            this.lblLoading.TabIndex = 0;
+            this.lblLoading.Text = "LOADING...";
+            this.lblLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1012, 661);
-            Controls.Add(label3);
-            Controls.Add(btnOrderByCards);
-            Controls.Add(btnOrderByVisitors);
-            Controls.Add(btnOrderByGoals);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(flpFavoritePlayers);
-            Controls.Add(flpAllPlayers);
-            Controls.Add(btnSettings);
-            Name = "MainForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainForm";
-            FormClosing += MainForm_FormClosing;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(867, 573);
+            this.Controls.Add(this.lblLoading);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnOrderByCards);
+            this.Controls.Add(this.btnOrderByVisitors);
+            this.Controls.Add(this.btnOrderByGoals);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.flpFavoritePlayers);
+            this.Controls.Add(this.flpAllPlayers);
+            this.Controls.Add(this.btnSettings);
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -163,5 +180,6 @@ namespace WindowsFormsApp
         private Button btnOrderByVisitors;
         private Button btnOrderByCards;
         private Label label3;
+        private Label lblLoading;
     }
 }
