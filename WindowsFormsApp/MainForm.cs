@@ -106,7 +106,6 @@ namespace WindowsFormsApp
             {
                 Repository.SaveFavoritePlayers(favoritePlayers);
                 Dispose();
-                Application.Exit();
             }
             else e.Cancel = true;
         }

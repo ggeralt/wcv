@@ -115,7 +115,7 @@ namespace WPFApp
                 }
             }
 
-            DisplayHomeTeam();
+            
         }
 
         private void LoadAwayTeam()
@@ -139,7 +139,7 @@ namespace WPFApp
                 }
             }
 
-            DisplayAwayTeam();
+            
         }
 
         private void DisplayHomeTeam()
@@ -210,12 +210,16 @@ namespace WPFApp
         private void cbHomeTeam_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             cbAwayTeam.Items.Clear();
+            oppositeGoal.Children.Clear();
+            oppositeDefender.Children.Clear();
+            oppositeMid.Children.Clear();
+            oppositeForward.Children.Clear();
             string data = cbHomeTeam.SelectedItem.ToString();
             string[] details = data.Split('(');
             string newTeam = details[1].Substring(0, 3);
             pickedCountry = details[0];
             fifa_code = newTeam;
-            //Repository.SaveWPFFavoriteTeam(new WPFSettings(newTeam));
+            LoadHomeTeam();
             LoadOpositeTeam();
         }
 
@@ -225,9 +229,13 @@ namespace WPFApp
 
             oponentCountry = cbAwayTeam.SelectedItem.ToString();
 
-            GetScore();
             LoadHomeTeam();
+            DisplayHomeTeam();
+
             LoadAwayTeam();
+            DisplayAwayTeam();
+
+            GetScore();
         }
 
         private void btnHomeTeam_Click(object sender, RoutedEventArgs e)

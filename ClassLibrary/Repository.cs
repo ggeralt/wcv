@@ -201,13 +201,6 @@ namespace ClassLibrary
                 writter.Write(favoriteTeam);
         }
 
-        /*public static void SaveWPFFavoriteTeam(WPFSettings wpfSettings)
-        {
-            WPF_FAVORITE_TEAM = wpfSettings.favoriteTeam;
-            using (StreamWriter writter = new StreamWriter(WPF_FAVORITETEAM_PATH))
-                writter.WriteLine(WPF_FAVORITE_TEAM);
-        }*/
-
         public static Task<HashSet<Match>> LoadMatches(string fifa_code)
         {
             if (WPF_GENDER == "Male")
@@ -226,12 +219,6 @@ namespace ClassLibrary
                     var apiClient = new RestClient(FEMALE_MATCH_DETAILS_URL + fifa_code);
                     var response = apiClient.Execute<HashSet<Match>>(new RestRequest());
                     return JsonConvert.DeserializeObject<HashSet<Match>>(response.Content, jsonSerializerSettings);
-
-                    /*using (StreamReader reader = new StreamReader(FEMALE_MATCH_FILE))
-                    {
-                        string json = reader.ReadToEnd();
-                        return JsonConvert.DeserializeObject<HashSet<Match>>(json);
-                    }*/
                 });
             }
         }
