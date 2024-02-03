@@ -27,7 +27,7 @@
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lbResult" Content="00:00" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"/>
+        <Label x:Name="lbResult" Content="0 : 0" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"/>
 
         <ComboBox x:Name="cbHomeTeam" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" SelectionChanged="cbHomeTeam_SelectionChanged"/>
         <Label Content="VS" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>

@@ -266,7 +266,7 @@ namespace ClassLibrary
             List<string> wpfsettings = new List<string>();
 
             if (!File.Exists(WPF_SETTINGS_PATH))
-                File.AppendAllText(WPF_SETTINGS_PATH, "");
+                File.AppendAllText(WPF_SETTINGS_PATH, "Male\r\nEnglish\r\n800x550\r\n");
 
             using (StreamReader reader = new StreamReader(WPF_SETTINGS_PATH))
             {

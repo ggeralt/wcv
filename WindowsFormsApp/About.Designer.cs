@@ -62,6 +62,7 @@ namespace WindowsFormsApp
             this.pictureBox.Size = new System.Drawing.Size(200, 200);
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // About
             // 

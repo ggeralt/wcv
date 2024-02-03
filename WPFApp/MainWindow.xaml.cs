@@ -114,8 +114,6 @@ namespace WPFApp
                         AddGoalsCards(teamEvent, startingEleven);
                 }
             }
-
-            
         }
 
         private void LoadAwayTeam()
@@ -138,8 +136,6 @@ namespace WPFApp
                         AddGoalsCards(teamEvent, startingEleven);
                 }
             }
-
-            
         }
 
         private void DisplayHomeTeam()
@@ -209,6 +205,7 @@ namespace WPFApp
 
         private void cbHomeTeam_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            lbResult.Content = "0 : 0";
             cbAwayTeam.Items.Clear();
             oppositeGoal.Children.Clear();
             oppositeDefender.Children.Clear();
